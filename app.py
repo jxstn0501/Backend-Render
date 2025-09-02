@@ -1,47 +1,30 @@
 from flask import Flask, request, jsonify
 import requests
 import os
-import tempfile
 
 app = Flask(__name__)
 
+API_URL = "https://api.parseextract.com/v1/data-extract"
+API_KEY = os.environ.get("PARSEEXTRACT_API_KEY")
+
 @app.route("/extract", methods=["POST"])
 def extract():
-    # API URL
-    api_url = "https://api.parseextract.com/v1/data-extract"
+    file = request.files.get("file")
+    prompt = request.form.get("prompt", "")
 
-    # Authorization
-    api_key = os.environ["PARSEEXTRACT_API_KEY"]  # <<--- hier API-Key als Umgebungsvariable setzen
-    headers = {"Authorization": f"Bearer {api_key}"}
+    if not file or not prompt:
+        return jsonify({"error": "file and prompt are required"}), 400
 
-    # Prompt aus dem Request holen
-    prompt = request.form.get("prompt", "Extract text")
-    url_param = request.form.get("url")
+    headers = {"Authorization": f"Bearer {API_KEY}"}
+    files = {"file": (file.filename, file.stream, file.mimetype)}
+    data = {"prompt": prompt}
 
-    # Datei speichern, falls vorhanden
-    uploaded_file = request.files.get("file")
-    if not uploaded_file:
-        return jsonify({"error": "No file uploaded"}), 400
+    try:
+        resp = requests.post(API_URL, files=files, data=data, headers=headers, timeout=(10,120))
+        return jsonify(resp.json())
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
-    # Temporäre Datei
-    with tempfile.NamedTemporaryFile(delete=False) as tmp:
-        file_path = tmp.name
-        uploaded_file.save(file_path)
-
-    # Timeouts
-    timeout = (10, 120)  # 10 Sekunden connect, 120 Sekunden read
-
-    # Payload
-    payload = {"prompt": prompt}
-    if url_param:
-        payload["url"] = url_param
-
-    # POST Request (Sync) – exakt wie in der Dokumentation
-    with open(file_path, "rb") as f:
-        files = {"file": (uploaded_file.filename, f)}
-        response = requests.post(api_url, files=files, data=payload, headers=headers, timeout=timeout)
-
-    return jsonify(response.json())
-
-if __name__ == "__main__":
-    app.run(debug=True)
+@app.route("/")
+def home():
+    return "Backend läuft! Sende POST an /extract"
