@@ -30,3 +30,7 @@ def extract():
 @app.route("/")
 def home():
     return "Backend läuft! Sende POST an /extract"
+    
+    
+from ui import ui_bp
+app.register_blueprint(ui_bp, url_prefix="/")
