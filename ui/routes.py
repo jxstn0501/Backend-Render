@@ -6,7 +6,7 @@ def index():
     return render_template("ui/index.html")
 
 @ui_bp.route("/import")
-def import_stats():
+def import_page():
     return render_template("ui/import.html")
 
 @ui_bp.route("/dashboard")

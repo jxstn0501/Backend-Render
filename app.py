@@ -2,6 +2,10 @@ from flask_cors import CORS
 from flask import Flask, request, jsonify
 import requests
 import os
+from ui import ui_bp   # Import Blueprint
+
+app = Flask(__name__)
+CORS(app)
 
 app = Flask(__name__)
 CORS(app)  # <--- das muss direkt nach dem Flask-Objekt kommen
@@ -32,5 +36,5 @@ def home():
     return "Backend läuft! Sende POST an /extract"
     
     
-from ui import ui_bp
-app.register_blueprint(ui_bp, url_prefix="/")
+app.register_blueprint(ui_bp, url_prefix="/ui")
+
