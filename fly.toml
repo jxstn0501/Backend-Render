@@ -1,4 +1,4 @@
-app = "your-app-name"  # ändert nach Wunsch
+app = "dartapp1"  # ändert nach Wunsch
 
 [build]
   dockerfile = "Dockerfile"
