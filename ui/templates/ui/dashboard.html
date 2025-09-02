@@ -1,0 +1,27 @@
+{% extends "ui/base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block header %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="space-y-4">
+  <div class="grid grid-cols-2 gap-4">
+    <div class="bg-white p-4 rounded shadow text-center">
+      <p class="text-sm text-gray-500">PPR</p>
+      <p class="text-xl font-bold">–</p>
+    </div>
+    <div class="bg-white p-4 rounded shadow text-center">
+      <p class="text-sm text-gray-500">Checkout %</p>
+      <p class="text-xl font-bold">–</p>
+    </div>
+  </div>
+  <div class="bg-white p-4 rounded shadow">
+    <p class="font-bold mb-2">Visits</p>
+    <div class="flex gap-2">
+      <span class="px-2 py-1 bg-orange-100 rounded text-sm">60+</span>
+      <span class="px-2 py-1 bg-orange-100 rounded text-sm">100+</span>
+      <span class="px-2 py-1 bg-orange-100 rounded text-sm">140+</span>
+      <span class="px-2 py-1 bg-orange-100 rounded text-sm">180</span>
+    </div>
+  </div>
+</div>
+{% endblock %}

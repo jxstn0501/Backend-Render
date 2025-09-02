@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="de" class="bg-gray-50 text-gray-900">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{% block title %}PersonalDartCoach{% endblock %}</title>
+  <link href="{{ url_for('ui.static', filename='css/tailwind.css') }}" rel="stylesheet">
+  <script src="https://unpkg.com/alpinejs" defer></script>
+</head>
+<body class="max-w-[420px] mx-auto min-h-screen flex flex-col">
+  <header class="px-4 py-3 border-b bg-white shadow">
+    <h1 class="text-xl font-bold">{% block header %}{% endblock %}</h1>
+  </header>
+  <main class="flex-1 p-4">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

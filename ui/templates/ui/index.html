@@ -1,0 +1,24 @@
+{% extends "ui/base.html" %}
+{% block title %}Home – PersonalDartCoach{% endblock %}
+{% block header %}PersonalDartCoach{% endblock %}
+
+{% block content %}
+<div class="grid grid-cols-2 gap-4">
+  <a href="{{ url_for('ui.import_stats') }}" class="rounded-2xl p-6 bg-white shadow hover:scale-95 transition transform flex flex-col items-center">
+    <svg class="w-8 h-8 text-orange-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><path d="M12 4v16m8-8H4"/></svg>
+    <span>Statistik importieren</span>
+  </a>
+  <a href="{{ url_for('ui.dashboard') }}" class="rounded-2xl p-6 bg-white shadow hover:scale-95 transition transform flex flex-col items-center">
+    <svg class="w-8 h-8 text-orange-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><path d="M4 12h16M4 6h16M4 18h16"/></svg>
+    <span>Dashboard anzeigen</span>
+  </a>
+  <a href="{{ url_for('ui.training') }}" class="rounded-2xl p-6 bg-white shadow hover:scale-95 transition transform flex flex-col items-center">
+    <svg class="w-8 h-8 text-orange-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><path d="M9 12h6M12 9v6"/></svg>
+    <span>Trainingsplan</span>
+  </a>
+  <a href="{{ url_for('ui.stats') }}" class="rounded-2xl p-6 bg-white shadow hover:scale-95 transition transform flex flex-col items-center">
+    <svg class="w-8 h-8 text-orange-600 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+    <span>Statistiken aufrufen</span>
+  </a>
+</div>
+{% endblock %}
