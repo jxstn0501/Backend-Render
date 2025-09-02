@@ -1,6 +1,7 @@
-app = "personal-dart-coach"   # <- hier eigenen Fly-App-Namen einsetzen!
+app = "your-app-name"  # ändert nach Wunsch
 
 [build]
+  dockerfile = "Dockerfile"
 
 [env]
   PORT = "8080"
@@ -10,5 +11,5 @@ app = "personal-dart-coach"   # <- hier eigenen Fly-App-Namen einsetzen!
   force_https = true
   auto_stop_machines = true
   auto_start_machines = true
-  min_machines_running = 0
+  min_machines_running = 1
   processes = ["app"]
