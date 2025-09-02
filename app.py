@@ -1,8 +1,10 @@
+from flask_cors import CORS
 from flask import Flask, request, jsonify
 import requests
 import os
 
 app = Flask(__name__)
+CORS(app)  # <--- das muss direkt nach dem Flask-Objekt kommen
 
 API_URL = "https://api.parseextract.com/v1/data-extract"
 API_KEY = os.environ.get("PARSEEXTRACT_API_KEY")
