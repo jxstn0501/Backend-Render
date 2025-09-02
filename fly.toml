@@ -1,4 +1,4 @@
-app = "personal-dart-coach"   # deinen App-Namen hier eintragen
+app = "dartapp1"  # ändert nach Wunsch
 
 [build]
   dockerfile = "Dockerfile"
